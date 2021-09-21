@@ -11,4 +11,7 @@ Course Outline
 
 
 
+----
+Contacts
+----
 If you have any question, please feel free to contact: Hang Liu (asher.hangliu@gmail.com)
