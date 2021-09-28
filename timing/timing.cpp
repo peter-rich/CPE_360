@@ -72,10 +72,6 @@ int main(int args, char **argv){
 	//Pick the first generated number to search
 	int search_key = array[0];
 
-	// void qsort(void *base, size_t nmemb, size_t size,
-	//                   int (*compar)(const void *, const void *));
-	//sort the array
-	qsort(array, size, sizeof(int), my_compare_func);
 	
 	//for (int i = 0; i < size; i ++)
 	//	std::cout<<array[i]<<" ";
@@ -83,9 +79,14 @@ int main(int args, char **argv){
 	
 	double time_begin = wtime();
 	
-	for(int i = 0; i < (1<<20); i++)
-		//binary search
-		binary_search(array,rand()%238448, 0, size);
+	//for(int i = 0; i < (1<<20); i++)
+	//	//binary search
+	//	binary_search(array,rand()%238448, 0, size);
+	
+	// void qsort(void *base, size_t nmemb, size_t size,
+	//                   int (*compar)(const void *, const void *));
+	//sort the array
+	qsort(array, size, sizeof(int), my_compare_func);
 	
 	//Insert the applications we want to measure the time consumption
 	//...
@@ -96,5 +97,6 @@ int main(int args, char **argv){
 	
 	double my_time = wtime() - time_begin;
 
-	std::cout<<"The time consumption is: "<<(my_time)/(1<<20)<<" second(s).\n";
+	//std::cout<<"The time consumption is: "<<(my_time)/(1<<20)<<" second(s).\n";
+	std::cout<<"The time consumption is: "<<my_time<<" second(s).\n";
 }
