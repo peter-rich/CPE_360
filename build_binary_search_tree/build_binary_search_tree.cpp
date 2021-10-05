@@ -29,7 +29,29 @@ build_binary_search_tree(int *array, int array_size)
 		//	- going left if this array[i] is smaller than the node
 		//	- going right if this array[i] is larger than the node
 		//Continue descending until you cannot, and that's the spot for you to store array[i]
-		
+		//	
+		//tmp = root;
+		//while (true){
+		//
+		// //We get the spot (left of tmp) to insert
+		//if((array[i] < tmp->val) && (tmp->left == NULL))
+		// insert the array[i]'s value;
+		// break;
+		//
+		// //We get the spot (rigth of tmp) to insert
+		//if((array[i] > tmp->val) && (tmp->right == NULL))
+		// insert the array[i]'s value;
+		//break;
+		//
+		// if (array[i] < tmp->val)
+		// tmp = tmp->left;
+		//
+		// if (array[i] > tmp->val)
+		// tmp = tmp->right;
+		//}
+	
+
+
 		//- if the entire program builds a correct BST, - 40 points
 	}
 }	
