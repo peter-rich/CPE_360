@@ -20,15 +20,17 @@ build_binary_search_tree(int *array, int array_size)
 
 	for(int i = 1; i < array_size; i ++)
 	{
+		//- 30 points
 		//allocate a struct node variable
-
 		//store array[i] into this variable
 
+		//- 30 points
 		//descend the tree from root by 
 		//	- going left if this array[i] is smaller than the node
 		//	- going right if this array[i] is larger than the node
 		//Continue descending until you cannot, and that's the spot for you to store array[i]
 		
+		//- if the entire program builds a correct BST, - 40 points
 	}
 }	
 
