@@ -1,11 +1,106 @@
 #include <iostream>
-#include <stdlib.h>
+
+#define N 128
 
 struct node{
 	int val;
 	struct node *left;
 	struct node *right;
 };
+
+
+struct node *
+search_value_in_bst(struct node *root, int value)
+{
+
+}
+
+struct node *
+delete_value_in_bst(struct node *root, int value)
+{
+
+}
+
+void
+print_bst_queue(struct node **queue, struct node **queue_parent, int queue_size)
+{
+	for(int i = 0; i < queue_size; i ++)
+	{
+		printf("%d(%d), ", queue[i]->val, queue_parent[i]->val);
+	}
+
+	printf("\n");
+}
+
+void
+print_bst_by_level(struct node *root)
+{
+	if (root == NULL) {
+		printf("This tree is empty\n");
+		return;
+	}
+
+	struct node **current_queue = new struct node*[N];
+	struct node **current_queue_parent = new struct node*[N];
+	struct node **next_queue = new struct node*[N];
+	struct node **next_queue_parent = new struct node*[N];
+
+	for(int i = 0; i < N; i ++)
+	{
+		current_queue[i] = new struct node;
+		current_queue_parent[i] = new struct node;
+		next_queue[i] = new struct node;
+		next_queue_parent[i] = new struct node;
+	}
+	
+	int current_queue_size = 0;
+	int next_queue_size = 0;
+	
+	current_queue[0] = root;
+	current_queue_parent[0] = root;
+
+	current_queue_size = 1;
+	
+	while(current_queue_size != 0)
+	{
+		print_bst_queue(current_queue, current_queue_parent, current_queue_size);
+
+		
+		//Traverse current queue to generate next_queue;
+		next_queue_size = 0;
+		for(int i = 0; i < current_queue_size; i ++)
+		{
+			struct node *tmp = current_queue[i];
+
+			if(tmp->left != NULL)
+			{
+				next_queue[next_queue_size] = tmp->left;
+				next_queue_parent[next_queue_size++] = tmp;
+			}
+
+			if(tmp->right != NULL)
+			{
+				next_queue[next_queue_size] = tmp->right;
+				next_queue_parent[next_queue_size++] = tmp;
+			}
+
+		}
+
+		//Swap the current and next for the coming iteration
+		struct node **tmp_ptr = current_queue;
+		current_queue = next_queue;
+		next_queue = tmp_ptr;
+
+		tmp_ptr = current_queue_parent;
+		current_queue_parent = next_queue_parent;
+		next_queue_parent = tmp_ptr;
+
+		current_queue_size = next_queue_size;
+
+		//printf("Next count: %d\n", next_queue_size);
+	}
+
+}
 
 struct node *
 build_binary_search_tree(int *array, int array_size)
@@ -73,15 +168,38 @@ int main(int args, char **argv){
 	for(int i = 0; i < array_size; i ++)
 	{
 		int num = rand()%100;
+		array[i] = num;
+		
 		for(int j = 0; j < i; j ++)
 			if(num == array[j])
 			{
 				i--;
 				break;
 			}
-		array[i] = num;
 	}
 
 	//Generate the binary search tree
-	struct node *root = build_binary_search_tree(array, array_size);	
+	//struct node *root = build_binary_search_tree(array, array_size);	
+
+	struct node *root = new struct node;
+	struct node *right8 = new struct node;
+	struct node *left8 = new struct node;
+	struct node *left7 = new struct node;
+	root ->val = 8;
+	root->left = left8;
+	root->right = right8;
+
+	left8->val = 7;
+	left8->left=left7;
+	left8->right = NULL;
+
+	right8->val = 9;
+	right8->left = NULL;
+	right8->right = NULL;
+
+	left7->val = 3;
+	left7->left = NULL;
+	left7->right = NULL;
+
+	print_bst_by_level(root);
 }
