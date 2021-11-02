@@ -118,6 +118,10 @@ build_binary_search_tree(int *array, int array_size)
 		//- 30 points
 		//allocate a struct node variable
 		//store array[i] into this variable
+		struct node *newArrival = new struct node;
+		newArrival->val = array[i];
+		newArrival->left = NULL;
+		newArrival->right = NULL;
 
 		//- 30 points
 		//descend the tree from root by 
@@ -125,30 +129,35 @@ build_binary_search_tree(int *array, int array_size)
 		//	- going right if this array[i] is larger than the node
 		//Continue descending until you cannot, and that's the spot for you to store array[i]
 		//	
-		//tmp = root;
-		//while (true){
-		//
-		// //We get the spot (left of tmp) to insert
-		//if((array[i] < tmp->val) && (tmp->left == NULL))
-		// insert the array[i]'s value;
-		// break;
-		//
-		// //We get the spot (rigth of tmp) to insert
-		//if((array[i] > tmp->val) && (tmp->right == NULL))
-		// insert the array[i]'s value;
-		//break;
-		//
-		// if (array[i] < tmp->val)
-		// tmp = tmp->left;
-		//
-		// if (array[i] > tmp->val)
-		// tmp = tmp->right;
-		//}
-	
+		struct node *tmp = root;
+		while (true){
 
+			//We get the spot (left of tmp) to insert
+			if((array[i] < tmp->val) && (tmp->left == NULL))
+			{ 
+				tmp->left=newArrival;
+				break;
+			}
+			//We get the spot (rigth of tmp) to insert
+			if((array[i] > tmp->val) && (tmp->right == NULL))
+			{
+				tmp->right=newArrival;
+				break;
+			}
+			if (array[i] < tmp->val){
+				tmp = tmp->left;
+				continue;
+			}
 
+			if (array[i] > tmp->val)
+			{
+				tmp = tmp->right;
+				continue;
+			}
+		}
 		//- if the entire program builds a correct BST, - 40 points
 	}
+	return root;
 }	
 
 int main(int args, char **argv){
@@ -179,27 +188,27 @@ int main(int args, char **argv){
 	}
 
 	//Generate the binary search tree
-	//struct node *root = build_binary_search_tree(array, array_size);	
+	struct node *root = build_binary_search_tree(array, array_size);	
 
-	struct node *root = new struct node;
-	struct node *right8 = new struct node;
-	struct node *left8 = new struct node;
-	struct node *left7 = new struct node;
-	root ->val = 8;
-	root->left = left8;
-	root->right = right8;
+	//struct node *root = new struct node;
+	//struct node *right8 = new struct node;
+	//struct node *left8 = new struct node;
+	//struct node *left7 = new struct node;
+	//root ->val = 8;
+	//root->left = left8;
+	//root->right = right8;
 
-	left8->val = 7;
-	left8->left=left7;
-	left8->right = NULL;
+	//left8->val = 7;
+	//left8->left=left7;
+	//left8->right = NULL;
 
-	right8->val = 9;
-	right8->left = NULL;
-	right8->right = NULL;
+	//right8->val = 9;
+	//right8->left = NULL;
+	//right8->right = NULL;
 
-	left7->val = 3;
-	left7->left = NULL;
-	left7->right = NULL;
+	//left7->val = 3;
+	//left7->left = NULL;
+	//left7->right = NULL;
 
 	print_bst_by_level(root);
 }
