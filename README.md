@@ -32,10 +32,10 @@ Course Outline
 ----
 Notes
 ----
-For the students that attend this class, Prof. Hang Liu also keeps a private repository that includes the complete implementations for each of the problems in this repository. Please contact him if you need access.
+For the students that attend this class, Prof. Hang Liu also keeps a private repository that includes the complete implementations for each of the problems in this repository. Please contact him for access.
 
 
 ----
 Contacts
 ----
-If you have any question, please feel free to contact: Hang Liu (asher.hangliu@gmail.com)
+If you have any question, please feel free to contact: Hang Liu (asher.hangliu@gmail.com).
