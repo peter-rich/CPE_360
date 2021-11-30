@@ -35,7 +35,55 @@ int graph_matrix(int ** &graph, int &vertex_count){
 void
 bfs_matrix(int **graph, int vertex_count, int root)
 {
+   int *current_queue = new int[vertex_count];
+    int *next_queue = new int[vertex_count];
 
+    int current_queue_count = 0;
+    int next_queue_count = 0;
+
+    int *status = new int [vertex_count];
+    int *parent = new int [vertex_count];
+
+
+    for(int i = 0; i < vertex_count; i ++){
+        status [i] = -1;
+        parent[i] =  -1;
+        
+    }
+    
+    //Put root vertex in current-level frontier queue
+    int level = 0;
+    current_queue[current_queue_count ++] = root;
+    status[root] = level;
+
+    level ++;
+
+    //Traverse the graph level by level
+       //For each frontier in the current_queue
+        //We traverse all its neighbors
+                   
+                    //If that neighbor is first-time visited,
+                    //We will put this neighbor in next_queue
+                    //And visit this neighbor: i) change the status[] of this neighbor 
+                    //ii) Update the parent[] of this neighbor
+   
+        //Once we finish the current level
+        //We swap the current-level, next-level frontier queue
+
+    }
+
+    //Check the result
+    for(int i = 0; i < level; i ++)
+    {
+        std::cout<<"Level "<<i<<": ";
+        for(int j = 0; j < vertex_count; j ++)
+            if(status[j] == i)
+            {
+                std::cout<<j<<" (parent: "<<parent[j]<<" ) ";
+            }
+        
+        std::cout<<"\n";
+    }
 }
 
 int main (int args, char **argv)
