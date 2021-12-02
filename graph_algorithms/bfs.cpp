@@ -59,6 +59,8 @@ bfs_matrix(int **graph, int vertex_count, int root)
     level ++;
 
     //Traverse the graph level by level
+    while (current_queue_count > 0)
+    {
        //For each frontier in the current_queue
         //We traverse all its neighbors
                    
@@ -70,8 +72,8 @@ bfs_matrix(int **graph, int vertex_count, int root)
         //Once we finish the current level
         //We swap the current-level, next-level frontier queue
 
-    
-
+    }
+	
     //Check the result
     for(int i = 0; i < level; i ++)
     {
