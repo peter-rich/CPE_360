@@ -2,7 +2,6 @@
 #include <cstdlib>
 #include <iostream>
 #include <assert.h>
-
 struct data {
     int value;
     struct data * next;
@@ -83,17 +82,22 @@ int main(int args, char **argv)
 
     //build the linked list;
 //    insert_element_tail(my_linked_list, 5);
+    std::cout<<"### Initial link list: ";
+    print_linked_list(my_linked_list);
     insert_element_tail(my_linked_list, 2);
     insert_element_tail(my_linked_list, 3);
         
+    std::cout<<"### link list after insert element tail: ";
     print_linked_list(my_linked_list);
     
     insert_element(my_linked_list, 2, -1);
 
+    std::cout<<"### link list after insert: ";
     print_linked_list(my_linked_list);
 
     delete_element(my_linked_list, 2);
     
+    std::cout<<"### link list after delete element: ";
     print_linked_list(my_linked_list);
 
     return 0;
