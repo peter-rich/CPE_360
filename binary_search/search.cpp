@@ -30,7 +30,11 @@ int binary_search(int *array, int search_key, int beg, int end)
 	
 	while(beg<=end)
 	{
-		int mid = (beg + end)/2;
+		// (3) Try to inplement the binary search mid = (the upper bound + lower bound )/ 2
+		int mid = beg;
+
+		// End of the inplementing
+
 		if(array[mid] == search_key)
 		{
 			if (print_out) {
@@ -88,6 +92,9 @@ int main (int args, char **argv)
 	auto start0 = std::chrono::high_resolution_clock::now();
 
 	for (int j = 0; j < search_num; j ++) {	
+		// (1) Please assign the randon value here:
+
+		// End of the random value assignment
 		normal_search(array, search_key, 0, size);
 	}
 	auto start = std::chrono::high_resolution_clock::now();
@@ -105,6 +112,9 @@ int main (int args, char **argv)
 	
 	//binary search
 	for (int j = 0; j < search_num; j ++) {	
+		// (2) Please assign the randon value here:
+
+		// End of the random value assignment
 		binary_search(array, search_key, 0, size);
 	}
 	auto end2 = std::chrono::high_resolution_clock::now();
