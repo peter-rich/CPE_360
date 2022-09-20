@@ -1,10 +1,27 @@
 #include <iostream>
 #include <stdlib.h>
 #include <assert.h>
+#include <ctime>
+#include <chrono>
+
+#define print_out 0
 
 int my_compare_func (const void * a, const void * b)
 {
 	  return ( *(int*)a - *(int*)b );
+}
+
+int normal_search(int *array, int search_key, int beg, int end) {
+	for (int i = beg; i < end; i ++) {
+		if (array[i] == search_key) {
+			if (print_out) {
+				printf("Found %d at index = %d\n",search_key, i);
+			}
+			// printf("Found %d at index = %d\n", search_key, i);
+			return i;
+		}
+	}
+	return -1;
 }
 
 int binary_search(int *array, int search_key, int beg, int end)
@@ -15,7 +32,9 @@ int binary_search(int *array, int search_key, int beg, int end)
 		int mid = (beg + end)/2;
 		if(array[mid] == search_key)
 		{
-			printf("Found %d at index = %d\n",search_key,mid);
+			if (print_out) {
+				printf("Found %d at index = %d\n",search_key,mid);
+			}
 			return 1;
 		}else if(array[mid] < search_key){
 			beg = mid + 1;
@@ -24,7 +43,9 @@ int binary_search(int *array, int search_key, int beg, int end)
 			end = mid - 1;
 		}
 		//searching range changed to
-		printf("Valid range: array[%d] = %d -- array[%d] = %d for search_key = %d.\n", beg,array[beg],end,array[end-1], search_key);
+		if (print_out) {
+			printf("Valid range: array[%d] = %d -- array[%d] = %d for search_key = %d.\n", beg,array[beg],end,array[end-1], search_key);
+		}
 	}
 	
 	printf("Didn't find %d in this array\n", search_key);
@@ -47,16 +68,27 @@ int main (int args, char **argv)
 	int *array = new int[size];
 
 	//Generate random numbers for this array
+	
+	// initial the random seed
+	srand (time(NULL));
+
+	// Generate random number.
 	for(int i = 0; i < size ; i++)
-		array[i] = rand()%238448;
+		array[i] = rand()%147483647;
 
 	//Pick the first generated number to search
-	int search_key = array[0];
+	int search_key = array[rand()%size];
 
+	auto start0 = std::chrono::high_resolution_clock::now();
+	normal_search(array, search_key, 0, size);
+
+	auto start = std::chrono::high_resolution_clock::now();
 	// void qsort(void *base, size_t nmemb, size_t size,
 	//                   int (*compar)(const void *, const void *));
 	//sort the array
 	qsort(array, size, sizeof(int), my_compare_func);
+	
+	auto end = std::chrono::high_resolution_clock::now();
 	
 	//for (int i = 0; i < size; i ++)
 	//	std::cout<<array[i]<<" ";
@@ -64,6 +96,17 @@ int main (int args, char **argv)
 	
 	//binary search
 	binary_search(array, search_key, 0, size);
+
+	auto end2 = std::chrono::high_resolution_clock::now();
+
+	auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+
+	auto duration2 = std::chrono::duration_cast<std::chrono::microseconds>(end2 - end);
+ 
+	auto duration3 = std::chrono::duration_cast<std::chrono::microseconds>(start - start0);
 	
+	std::cout << "Time taken by normal search: " << duration3.count() << " microseconds" << std::endl;
+	std::cout << "Time taken by function quick sort: "  << duration.count() << " microseconds" << std::endl;
+	std::cout << "Time taken by function binary search: " << duration2.count() << " microseconds" << std::endl;
 	return 0;	
 }
