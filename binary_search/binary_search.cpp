@@ -18,10 +18,10 @@ int binary_search(int *array, int search_key, int beg, int end)
 			printf("Found %d at index = %d\n",search_key,mid);
 			return 1;
 		}else if(array[mid] < search_key){
-			beg = mid + 1;
+			//shrink the search space to larger half
 
 		}else{
-			end = mid - 1;
+			//shrink the search space to smaller half
 		}
 		//searching range changed to
 		printf("Valid range: array[%d] = %d -- array[%d] = %d for search_key = %d.\n", beg,array[beg],end,array[end-1], search_key);
