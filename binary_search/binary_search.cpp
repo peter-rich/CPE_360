@@ -7,6 +7,8 @@ int my_compare_func (const void * a, const void * b)
 	  return ( *(int*)a - *(int*)b );
 }
 
+//Iterative function
+//Please also write a recursive function
 int binary_search(int *array, int search_key, int beg, int end)
 {
 	
