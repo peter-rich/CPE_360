@@ -38,7 +38,7 @@ double wtime()
 	time[0]=time1.tv_sec;
 	time[1]=time1.tv_usec;
 
-	return time[0]+time[1]*1.0e-6;
+	return time[0]*1.0e6 + time[1];
 }
 
 #endif
@@ -92,7 +92,8 @@ int main(int args, char **argv){
 	int search_key = array[0];
 	
 	double time_begin = wtime();
-	
+	std::clock_t c_start = std::clock();
+
 	qsort(array, size, sizeof(int), my_compare_func);
 	
 	// Insert the applications we want to measure the time consumption
@@ -103,6 +104,11 @@ int main(int args, char **argv){
 	// Linear Search
 	
 	double my_time = wtime() - time_begin;
+	std::clock_t c_end = std::clock();
 
-	std::cout<<"The time consumption is: "<<my_time<<" second(s).\n";
+	std::cout << "The time consumption is: " << my_time << " (us).\n";
+	long double time_elapsed_ms = 1000000.0 * (c_end-c_start) / CLOCKS_PER_SEC;
+	std::cout << "The CPU time used: " << time_elapsed_ms << " (us).\n";
+
 }
+
