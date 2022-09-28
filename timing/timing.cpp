@@ -95,7 +95,12 @@ int main(int args, char **argv){
 	std::clock_t c_start = std::clock();
 
 	qsort(array, size, sizeof(int), my_compare_func);
-	
+	// bubble_sort(array, 0, size);
+
+	// binary_search(array, search_key, 0, size);
+
+	// normal_search(array, search_key, 0, size);
+
 	// Insert the applications we want to measure the time consumption
 	// ...
 	// Matrix multiplication
