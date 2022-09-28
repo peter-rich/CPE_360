@@ -5,7 +5,29 @@
 #include <stdlib.h>
 #include <iostream>
 #include <assert.h>
+#include <ctime>
+#include <chrono>
 
+int normal_search(int *array, int search_key, int beg, int end) {
+        for (int i = beg; i < end; i ++) {
+                if (array[i] == search_key) {
+                        return i;
+                }
+        }
+        return -1;
+}
+
+void bubble_sort(int *array, int beg, int end) {
+	for (int i = beg; i < end; i ++) {
+		for (int j = i+1; j < end; j ++) {
+			if(array[i] > array[j]) {
+				int tmp = array[j];
+				array[j] = array[i];
+				array[i] = tmp;	
+			}	
+		}
+	}
+}
 
 double wtime()
 {
@@ -53,50 +75,34 @@ int binary_search(int *array, int search_key, int beg, int end)
 int main(int args, char **argv){
 
 
-	std::cout<<"Input format:/path/to/exe size(2^size as the real size of the array)\n";
-	assert(args>=2);//Make sure we have at least 1 arguments in the input line;
+	std::cout<<"Input size  of the array\n";
 	
-	for(int i = 0; i < args; i++)
-		std::cout<<"argv["<<i<<"]: "<<argv[i]<<"========== ";
-	std::cout<<"\n";
+	int size=0; 
 
-	int size = 1<<atoi(argv[1]);
-	
-	//Allocate the space for this array
+	std::cin >> size;
+
+	// Allocate the space for this array
 	int *array = new int[size];
 
-	//Generate random numbers for this array
+	// Generate random numbers for this array
 	for(int i = 0; i < size ; i++)
 		array[i] = rand()%238448;
 
-	//Pick the first generated number to search
+	// Pick the first generated number to search
 	int search_key = array[0];
-
-	
-	//for (int i = 0; i < size; i ++)
-	//	std::cout<<array[i]<<" ";
-	//std::cout<<"\n";
 	
 	double time_begin = wtime();
 	
-	//for(int i = 0; i < (1<<20); i++)
-	//	//binary search
-	//	binary_search(array,rand()%238448, 0, size);
-	
-	// void qsort(void *base, size_t nmemb, size_t size,
-	//                   int (*compar)(const void *, const void *));
-	//sort the array
 	qsort(array, size, sizeof(int), my_compare_func);
 	
-	//Insert the applications we want to measure the time consumption
-	//...
-	//Matrix multiplication
-	//Qsort
-	//Binary Search
-	//Linear Search
+	// Insert the applications we want to measure the time consumption
+	// ...
+	// Matrix multiplication
+	// Qsort
+	// Binary Search
+	// Linear Search
 	
 	double my_time = wtime() - time_begin;
 
-	//std::cout<<"The time consumption is: "<<(my_time)/(1<<20)<<" second(s).\n";
 	std::cout<<"The time consumption is: "<<my_time<<" second(s).\n";
 }
