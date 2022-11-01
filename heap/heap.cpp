@@ -19,13 +19,14 @@ insert_heap (int *my_heap, int &my_heap_size, int val){
 
 }
 
-//Finish this during the class
+//Finish this during the class and return it 's value.
 int
 delete_min_heap (int *heap){
-
+	return 0;
 }
 
 //Try this 
+
 void 
 build_heap (int *heap, int *array, int size){
 
