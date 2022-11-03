@@ -25,12 +25,6 @@ delete_min_heap (int *heap){
 	return 0;
 }
 
-//Try this 
-
-void 
-build_heap (int *heap, int *array, int size){
-
-}
 
 
 int main (int args, char **argv){
