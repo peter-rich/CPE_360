@@ -2,7 +2,6 @@
 
 #define IS_FOUND 1
 
-
 struct entry{
     int val;
     struct entry *next;
@@ -11,7 +10,6 @@ struct entry{
 int hash_function(int element, int bucket_count){
     return (element%bucket_count);
 }
-
 
 int search_element(struct entry **hash_table, int element, int bucket_count){
     
@@ -24,19 +22,15 @@ int search_element(struct entry **hash_table, int element, int bucket_count){
     return is_found;
 }
 
-
-
 int insert(struct entry **hash_table, int element, int bucket_count){
     
     return 0;
 }
 
-
 int delete_element(struct entry **hash_table, int element, int bucket_count){
     
     return 0;
 }
-
 
 int construct_hash_table(struct entry **&hash_table, int bucket_count){
 
@@ -51,8 +45,6 @@ int construct_hash_table(struct entry **&hash_table, int bucket_count){
 
     return 0;
 }
-
-
 
 int main (int args, char **argv)
 {
