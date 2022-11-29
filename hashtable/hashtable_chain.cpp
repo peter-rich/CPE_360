@@ -50,9 +50,9 @@ int main (int args, char **argv)
 {
     std::cout<<"This is a hash table with chaining-based collision handling mechanism\n";
 
-    std::cout<<"/path/to/exe num_of_elements_to_insert bucket_count\n";
+    std::cout<<"num_of_elements_to_insert bucket_count\n";
 
-    assert(args>=3);
+    assert(args>=3); // inpput the numer of element to insert
 
     int num = atoi(argv[1]);
     int bucket_count = atoi(argv[2]);
