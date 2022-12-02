@@ -47,7 +47,7 @@ int main(int args, char **argv)
 
     }
 
-    merge_sort(array,0, count);
+    merge_sort(array,0, count-1);
 
     for(int i = 0; i < count - 1; i ++)
         assert(array[i+1]>=array[i]);
